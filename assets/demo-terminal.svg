@@ -1,19 +1,48 @@
-<svg width="1180" height="740" viewBox="0 0 1180 740" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1180" height="740" rx="28" fill="#0F172A"/>
-  <rect x="34" y="34" width="1112" height="672" rx="22" fill="#111827" stroke="#334155" stroke-width="2"/>
-  <circle cx="78" cy="78" r="8" fill="#FB7185"/>
-  <circle cx="106" cy="78" r="8" fill="#FBBF24"/>
-  <circle cx="134" cy="78" r="8" fill="#34D399"/>
-  <text x="72" y="138" fill="#C7D2FE" font-size="24" font-family="Consolas, monospace">$ python -m tools.cli risk --text "这个不复杂吧，你今天先出个方案。"</text>
-  <text x="72" y="210" fill="#F8FAFC" font-size="23" font-family="Consolas, monospace">{</text>
-  <text x="104" y="258" fill="#A5F3FC" font-size="23" font-family="Consolas, monospace">"risk_points": [</text>
-  <text x="136" y="304" fill="#E5E7EB" font-size="23" font-family="Consolas, monospace">"验收标准仍然模糊，后续容易出现范围膨胀。",</text>
-  <text x="136" y="346" fill="#E5E7EB" font-size="23" font-family="Consolas, monospace">"同步节点很近，说明至少需要一版能拿出来讨论的内容。"</text>
-  <text x="104" y="392" fill="#A5F3FC" font-size="23" font-family="Consolas, monospace">],</text>
-  <text x="104" y="438" fill="#A5F3FC" font-size="23" font-family="Consolas, monospace">"scores": {</text>
-  <text x="136" y="484" fill="#E5E7EB" font-size="23" font-family="Consolas, monospace">"blame_risk": 70,</text>
-  <text x="136" y="526" fill="#E5E7EB" font-size="23" font-family="Consolas, monospace">"scope_creep": 60,</text>
-  <text x="136" y="568" fill="#E5E7EB" font-size="23" font-family="Consolas, monospace">"overtime_probability": 70</text>
-  <text x="104" y="614" fill="#A5F3FC" font-size="23" font-family="Consolas, monospace">}</text>
-  <text x="72" y="660" fill="#F8FAFC" font-size="23" font-family="Consolas, monospace">}</text>
+<svg width="1280" height="840" viewBox="0 0 1280 840" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="panel" x1="74" y1="84" x2="1208" y2="756" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="line" x1="84" y1="92" x2="1196" y2="748" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38BDF8"/>
+      <stop offset="1" stop-color="#F59E0B"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="840" rx="34" fill="#020617"/>
+  <circle cx="1098" cy="124" r="160" fill="#1D4ED8" fill-opacity="0.14"/>
+  <circle cx="1060" cy="690" r="210" fill="#F59E0B" fill-opacity="0.08"/>
+  <rect x="44" y="44" width="1192" height="752" rx="28" fill="url(#panel)" stroke="url(#line)" stroke-width="2"/>
+  <circle cx="88" cy="92" r="9" fill="#FB7185"/>
+  <circle cx="118" cy="92" r="9" fill="#FBBF24"/>
+  <circle cx="148" cy="92" r="9" fill="#34D399"/>
+  <text x="176" y="100" fill="#94A3B8" font-size="22" font-family="Consolas, monospace">leader-skill / markdown-first CLI output</text>
+
+  <text x="84" y="156" fill="#67E8F9" font-size="24" font-family="Consolas, monospace">$ python -m tools.cli translate --text "这个你先看一下，晚点我们再对齐。"</text>
+
+  <text x="84" y="218" fill="#F8FAFC" font-size="28" font-family="Segoe UI, Microsoft YaHei, sans-serif" font-weight="700"># 领导黑话翻译</text>
+
+  <text x="84" y="276" fill="#F59E0B" font-size="22" font-family="Segoe UI, Microsoft YaHei, sans-serif" font-weight="700">## 实际意思</text>
+  <text x="84" y="312" fill="#E2E8F0" font-size="21" font-family="Segoe UI, Microsoft YaHei, sans-serif">这不是简单看看，而是希望你尽快形成反馈、判断或可评审产出。</text>
+
+  <text x="84" y="368" fill="#F59E0B" font-size="22" font-family="Segoe UI, Microsoft YaHei, sans-serif" font-weight="700">## 画像摘要</text>
+  <text x="84" y="404" fill="#E2E8F0" font-size="21" font-family="Segoe UI, Microsoft YaHei, sans-serif">推进节奏偏快，默认你会先垫出一版；习惯先推进再补边界；同步时会在意口径是否一致。</text>
+
+  <text x="84" y="460" fill="#F59E0B" font-size="22" font-family="Segoe UI, Microsoft YaHei, sans-serif" font-weight="700">## 风险点</text>
+  <text x="100" y="496" fill="#E2E8F0" font-size="21" font-family="Segoe UI, Microsoft YaHei, sans-serif">• 优先级没有被明确写出来，容易打乱当前排期。</text>
+  <text x="100" y="532" fill="#E2E8F0" font-size="21" font-family="Segoe UI, Microsoft YaHei, sans-serif">• 同步前如果没有可讨论版本，会被动挨改。</text>
+
+  <rect x="736" y="248" width="442" height="362" rx="24" fill="#0B1120" stroke="#223556" stroke-width="2"/>
+  <text x="768" y="298" fill="#F8FAFC" font-size="28" font-family="Segoe UI, Microsoft YaHei, sans-serif" font-weight="700">What drops out</text>
+  <text x="768" y="352" fill="#C7D2FE" font-size="23" font-family="Segoe UI, Microsoft YaHei, sans-serif">• actual meaning</text>
+  <text x="768" y="396" fill="#C7D2FE" font-size="23" font-family="Segoe UI, Microsoft YaHei, sans-serif">• follow-up questions</text>
+  <text x="768" y="440" fill="#C7D2FE" font-size="23" font-family="Segoe UI, Microsoft YaHei, sans-serif">• hidden risk scores</text>
+  <text x="768" y="484" fill="#C7D2FE" font-size="23" font-family="Segoe UI, Microsoft YaHei, sans-serif">• safer reply strategy</text>
+  <text x="768" y="528" fill="#C7D2FE" font-size="23" font-family="Segoe UI, Microsoft YaHei, sans-serif">• promotion-minded moves</text>
+  <text x="768" y="580" fill="#67E8F9" font-size="20" font-family="Consolas, monospace">default output: markdown</text>
+
+  <text x="84" y="610" fill="#F59E0B" font-size="22" font-family="Segoe UI, Microsoft YaHei, sans-serif" font-weight="700">## 建议回复</text>
+  <text x="84" y="646" fill="#E2E8F0" font-size="21" font-family="Segoe UI, Microsoft YaHei, sans-serif">我先整理一版可评审内容，今晚给你初稿，明天同步时一起确认范围、优先级和验收标准。</text>
+
+  <text x="84" y="712" fill="#67E8F9" font-size="22" font-family="Segoe UI, Microsoft YaHei, sans-serif">First glance: meme. Second glance: useful. Third glance: send it to a teammate.</text>
 </svg>

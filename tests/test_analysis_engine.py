@@ -10,6 +10,8 @@ class AnalysisEngineTests(unittest.TestCase):
         self.assertIn("不是简单看看", result["actual_meaning"])
         self.assertIn("优先级", result["risk_points"][0])
         self.assertGreaterEqual(result["scores"]["overtime_probability"], 60)
+        self.assertEqual(len(result["follow_up_questions"]), 3)
+        self.assertIn("同步", result["follow_up_questions"][1])
 
     def test_translate_flags_scope_pressure(self):
         result = analyze_message("这个不复杂吧，你今天先出个方案，明天我们同步一下。")
@@ -20,6 +22,7 @@ class AnalysisEngineTests(unittest.TestCase):
             result["risk_points"],
         )
         self.assertGreaterEqual(result["scores"]["blame_risk"], 70)
+        self.assertIn("推进节奏偏快", result["persona_summary"])
 
 
 if __name__ == "__main__":

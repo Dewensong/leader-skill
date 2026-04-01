@@ -1,8 +1,8 @@
 # leader-skill
 
-`leader-skill` is a local-first boss-message decoder.
+`leader-skill` is a local-first decoder for vague boss messages.
 
-It translates vague manager requests into:
+It turns messy workplace language into something actionable:
 
 - actual meaning
 - priority signal
@@ -10,64 +10,84 @@ It translates vague manager requests into:
 - safer replies
 - upward-management moves
 
-## Why it exists
+## What makes it interesting
 
-Two meme-heavy open-source skills recently proved that simple ideas with sharp framing can travel very far:
+This repository borrows the high-virality skill packaging style seen in:
 
 - [titanwings/colleague-skill](https://github.com/titanwings/colleague-skill)
 - [therealXiaomanChu/ex-skill](https://github.com/therealXiaomanChu/ex-skill)
 
-This project borrows the installable skill structure and local generation flow, but changes the product angle:
+But the subject is different:
 
-- not personality cosplay
-- not a reskin
-- instead: decode power language at work
+- not coworkers
+- not ex-partners
+- instead: leadership language at work
 
-## Core layers
+The goal is simple: make vague assignments less mysterious and less dangerous.
 
-- `Leader Persona`
-- `Intent Map`
-- `Survival Playbook`
+## Quick start
 
-## Example
+### Install as a Claude Code skill
 
 ```bash
-python -m tools.cli translate --text "Could you quickly take a look and sync tomorrow?"
+mkdir -p .claude/skills
+git clone https://github.com/Dewensong/leader-skill .claude/skills/create-leader
 ```
 
-The output includes:
+### Or run it locally
 
-- actual meaning
-- priority
-- risk points
-- suggested reply
-- promotion hint
+```bash
+git clone https://github.com/Dewensong/leader-skill.git
+cd leader-skill
+python -m pip install -r requirements.txt
+python -m unittest discover -s tests -p "test_*.py"
+```
 
-## Supported local sources
+Try the most common phrase:
+
+```bash
+python -m tools.cli translate --text "Please take a look first, and we can align later."
+```
+
+The CLI now defaults to human-readable Markdown. Use `--format json` if you want machine output.
+
+## Supported sources
 
 - pasted text
 - screenshots
 - Markdown / TXT
 - PDF
 - `.eml` / `.mbox`
-- chat exports
+- chat export JSON
 
-## Install
+Everything is designed to stay local-first by default.
 
-```bash
-git clone https://github.com/Dewensong/leader-skill.git
-cd leader-skill
-python -m pip install -r requirements.txt
-```
+## Sample bundle
 
-## Tests
+If you want to inspect the output without running anything first:
 
-```bash
-python -m unittest discover -s tests -p "test_*.py"
-```
+- [examples/demo-leader/README.md](./examples/demo-leader/README.md)
+- [examples/demo-leader/persona.md](./examples/demo-leader/persona.md)
+- [examples/demo-leader/intent-map.md](./examples/demo-leader/intent-map.md)
+- [examples/demo-leader/playbook.md](./examples/demo-leader/playbook.md)
+
+## Core commands
+
+- `python -m tools.cli create-leader`
+- `python -m tools.cli list-leaders`
+- `python -m tools.cli show-leader`
+- `python -m tools.cli translate`
+- `python -m tools.cli priority`
+- `python -m tools.cli persona`
+- `python -m tools.cli reply`
+- `python -m tools.cli risk`
+- `python -m tools.cli promotion`
+- `python -m tools.cli leader-rollback`
+- `python -m tools.cli delete-leader`
 
 ## Safety
 
 - local-first by default
-- redact screenshots before sharing
-- do not use it to harass, forge, or target real people
+- redact screenshots before importing them
+- do not use it to harass, forge, monitor, or target real people
+- the point is clearer communication, not manipulative behavior

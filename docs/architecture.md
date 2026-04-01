@@ -1,41 +1,66 @@
 # Architecture
 
-`leader-skill` is intentionally split into three product layers and a small local tooling layer.
+`leader-skill` is intentionally small, local-first, and easy to audit.
 
-## Product Layers
+## System shape
+
+```text
+input -> normalize -> analyze -> write -> version -> present
+```
+
+## Product layers
 
 ### Leader Persona
 
-Captures how a leader tends to communicate:
+Turn repeated phrases into a recognizable management style:
 
-- urgency style
+- urgency preference
 - ambiguity tolerance
 - decision habits
-- preference for speed, polish, or visibility
+- sensitivity to scope, timing, and public alignment
 
 ### Intent Map
 
-Maps recurring phrases to probable reality:
+Turn specific phrases into likely intent:
 
 - actual meaning
 - implied priority
 - hidden risk
-- likely delivery expectation
+- expected delivery shape
 
 ### Survival Playbook
 
-Turns analysis into action:
+Turn analysis into action:
 
-- reply suggestion
+- safer replies
 - follow-up questions
-- reporting strategy
-- promotion-minded framing
+- reporting moves
+- promotion-minded visibility tactics
 
-## Local Tooling
+## Local tooling responsibilities
 
-- `analysis_engine.py`: phrase heuristics and score generation
-- `source_router.py`: file-type dispatch
-- `skill_writer.py`: writes generated leader artifacts
-- `version_manager.py`: snapshots and rollbacks
+- `source_router`: route inputs by file type
+- `document_parser`: read local text, Markdown, PDF, and exports
+- `image_ocr`: extract text from screenshots with sidecar fallback
+- `analysis_engine`: derive meaning, risk, tags, follow-up questions, and score signals
+- `skill_writer`: write a complete leader bundle plus a human-friendly bundle README
+- `version_manager`: snapshot and restore bundle history
+- `report_formatter`: render Markdown-first terminal output for humans
 
-The first release keeps everything local-first and file-based so it is easy to audit, hack, and extend.
+## Output contract
+
+Every generated leader bundle should keep a stable shape:
+
+- `README.md`
+- `persona.md`
+- `intent-map.md`
+- `playbook.md`
+- `sources.json`
+- `corrections.md`
+- `versions/`
+
+That makes the repository easier to trust:
+
+- humans can open one bundle and understand it quickly
+- contributors can diff changes cleanly
+- future parsers can keep writing to a predictable contract

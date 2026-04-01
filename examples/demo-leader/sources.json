@@ -1,0 +1,17 @@
+[
+  {
+    "type": "text",
+    "label": "manual-demo-1",
+    "preview": "这个你先看一下，晚点我们再对齐。"
+  },
+  {
+    "type": "text",
+    "label": "manual-demo-2",
+    "preview": "这个不复杂吧，你今天先出个方案，明天我们同步一下。"
+  },
+  {
+    "type": "text",
+    "label": "manual-demo-3",
+    "preview": "我们明天再对齐一下口径，这个你先推进。"
+  }
+]

@@ -1,0 +1,32 @@
+<svg width="1400" height="420" viewBox="0 0 1400 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="420" rx="32" fill="#0F172A"/>
+  <rect x="28" y="28" width="1344" height="364" rx="24" fill="#111827" stroke="#26364F" stroke-width="2"/>
+  <text x="56" y="82" fill="#F8FAFC" font-size="28" font-family="Segoe UI, Microsoft YaHei, sans-serif" font-weight="700">Local-first source flow</text>
+  <text x="56" y="118" fill="#9FB0D1" font-size="18" font-family="Segoe UI, Microsoft YaHei, sans-serif">Keep workplace material local, then route it into the correct parser and profile layer.</text>
+  <g font-family="Segoe UI, Microsoft YaHei, sans-serif" font-size="20" font-weight="600">
+    <rect x="68" y="176" width="184" height="88" rx="18" fill="#172554" stroke="#38BDF8" stroke-width="2"/>
+    <text x="102" y="212" fill="#E0F2FE">Text / Chat</text>
+    <text x="104" y="240" fill="#E0F2FE">paste / export</text>
+    <rect x="306" y="176" width="184" height="88" rx="18" fill="#172554" stroke="#38BDF8" stroke-width="2"/>
+    <text x="352" y="212" fill="#E0F2FE">Screenshot</text>
+    <text x="346" y="240" fill="#E0F2FE">OCR sidecar</text>
+    <rect x="544" y="176" width="184" height="88" rx="18" fill="#172554" stroke="#38BDF8" stroke-width="2"/>
+    <text x="594" y="212" fill="#E0F2FE">Docs</text>
+    <text x="575" y="240" fill="#E0F2FE">MD / PDF</text>
+    <rect x="782" y="176" width="184" height="88" rx="18" fill="#172554" stroke="#38BDF8" stroke-width="2"/>
+    <text x="824" y="212" fill="#E0F2FE">Email</text>
+    <text x="804" y="240" fill="#E0F2FE">.eml / .mbox</text>
+    <rect x="1020" y="176" width="184" height="88" rx="18" fill="#172554" stroke="#38BDF8" stroke-width="2"/>
+    <text x="1059" y="212" fill="#E0F2FE">Analyzers</text>
+    <text x="1040" y="240" fill="#E0F2FE">persona / intent</text>
+    <path d="M252 220H296" stroke="#67E8F9" stroke-width="4" stroke-linecap="round"/>
+    <path d="M490 220H534" stroke="#67E8F9" stroke-width="4" stroke-linecap="round"/>
+    <path d="M728 220H772" stroke="#67E8F9" stroke-width="4" stroke-linecap="round"/>
+    <path d="M966 220H1010" stroke="#67E8F9" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="320" cy="220" r="6" fill="#67E8F9"/>
+    <circle cx="558" cy="220" r="6" fill="#67E8F9"/>
+    <circle cx="796" cy="220" r="6" fill="#67E8F9"/>
+    <circle cx="1034" cy="220" r="6" fill="#67E8F9"/>
+  </g>
+  <text x="56" y="320" fill="#F59E0B" font-size="22" font-family="Segoe UI, Microsoft YaHei, sans-serif">The sample output is generated into `leaders/<slug>/` with version snapshots.</text>
+</svg>

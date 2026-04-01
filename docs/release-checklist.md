@@ -1,36 +1,38 @@
 # Release Checklist
 
-## Before Public Launch
+## Before pushing
 
-- Ensure `README.md` first screen explains the joke and the value in under 10 seconds.
-- Keep the first demo painful and recognizable.
-- Verify tests locally.
-- Verify install command works from a clean shell.
-- Prepare one screenshot or SVG for social preview.
+- [ ] README first screen explains the joke and the value in under 10 seconds
+- [ ] README links to a sample bundle that opens cleanly on GitHub
+- [ ] `assets/readme-hero.svg`, `assets/source-flow.svg`, and `assets/demo-terminal.svg` all render
+- [ ] install instructions work for both Claude Code skill mode and local CLI mode
+- [ ] local tests pass
+- [ ] at least one real CLI command has been run after the latest docs change
 
-## Day 0
+## Packaging quality bar
 
-- Publish the repository
-- Set description and topics
-- Add `v0.1.0` release
-- Post one demo screenshot with a short hook:
-  - “领导说‘这个你先看一下’时，他到底想让我今晚交、这周交，还是先练习背锅？”
+- [ ] commands default to human-readable Markdown
+- [ ] `--format json` still works for script-friendly flows
+- [ ] generated leader bundles include a quick-glance `README.md`
+- [ ] example bundle looks believable, not placeholder-heavy
+- [ ] screenshots and example phrases are redacted and workplace-safe
 
-## Day 1
+## GitHub launch
 
-- Reply to early issues quickly
-- Turn repeated questions into FAQ or README updates
-- Add one more example for the phrase users mention most
+- [ ] repository description is set
+- [ ] topics are set
+- [ ] social preview image is correct
+- [ ] release notes mention what changed
+- [ ] README and README_EN both reflect the current UX
 
-## Day 2-3
+## Day 1 follow-up
 
-- Ship a small update:
-  - more black-talk patterns
-  - more archetypes
-  - better OCR import fallback
+- [ ] turn repeated user questions into README edits
+- [ ] add more black-talk patterns based on the phrases people actually post
+- [ ] improve OCR instructions if users get stuck on screenshots
 
-## What Not To Do
+## Anti-patterns
 
-- do not buy stars
-- do not lead with “please star”
-- do not overclaim promotion outcomes
+- [ ] do not buy stars
+- [ ] do not lead with “please star”
+- [ ] do not overpromise promotion outcomes

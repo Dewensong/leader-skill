@@ -1,262 +1,226 @@
 # 领导.skill
 
-> 领导说“这个你先看一下”时，他到底是让你今天做、这周做，还是先热身准备背锅？
+![MIT License](https://img.shields.io/badge/license-MIT-0f172a?style=flat-square&labelColor=111827&color=38bdf8)
+![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-0f172a?style=flat-square&labelColor=111827&color=f59e0b)
+![Local First](https://img.shields.io/badge/local--first-yes-0f172a?style=flat-square&labelColor=111827&color=34d399)
+![Claude Code Skill](https://img.shields.io/badge/claude%20code-skill-0f172a?style=flat-square&labelColor=111827&color=f472b6)
 
-**`leader-skill`** 是一个本地优先的“领导圣意解析器”。
-它会把模糊任务、黑话、套话和“先对齐一下”的空气，翻译成更可执行的人话，再顺手给你一版更稳的回复和向上管理建议。
+> 领导说“这个你先看一下”，到底是“先看看”，还是“今天先给初稿，明天同步背锅范围”？
 
-<p>
-  <img src="./assets/social-preview.png" alt="leader skill social preview" width="100%" />
-</p>
-
-## 为什么它容易让人秒懂
-
-- 一眼能看懂：领导黑话翻译器
-- 第二眼发现：不只是段子，真的能用
-- 第三眼会想：发给同事一起看看
-
-## 一句话价值
-
-Decode vague boss messages into real requirements, risks, and upward-management replies.
-
-## 最炸 Demo
-
-输入：
-
-```text
-这个不复杂吧，你今天先出个方案，明天我们同步一下。
-```
-
-输出：
-
-```json
-{
-  "actual_meaning": "需求还没完全定义，但对方默认你会快速交出第一版。",
-  "priority_signal": "高优先级，建议当天给到初版或明确阻塞。",
-  "risk_points": [
-    "验收标准仍然模糊，后续容易出现范围膨胀。",
-    "同步节点很近，说明至少需要一版能拿出来讨论的内容。"
-  ],
-  "reply_suggestion": "我先按当前理解出一版方案，同时把目标、范围和验收标准列清楚，避免明天同步时信息缺口。"
-}
-```
-
-## 这不是换皮项目
-
-这个项目参考了以下两个项目的设计思路和技能骨架：
-
-- [titanwings/colleague-skill](https://github.com/titanwings/colleague-skill)
-- [therealXiaomanChu/ex-skill](https://github.com/therealXiaomanChu/ex-skill)
-
-但 `leader-skill` 的目标不是“复刻一个人”，而是把场景切到更真实的职场权力语言：
-
-- `Leader Persona`：领导画像、风格、偏好、忌讳
-- `Intent Map`：一句黑话背后的真实意思、优先级和风险
-- `Survival Playbook`：怎么回、怎么追问、怎么汇报、怎么少背锅多拿 credit
-
-## 功能结构
-
-### 1. 真实意图识别
-
-把这些话翻译成人话：
-
-- “这个你先看一下”
-- “这个不复杂吧”
-- “我们再对齐一下”
-- “你灵活处理一下”
-- “你有空顺手看下”
-
-### 2. 领导画像生成
-
-从多次对话和材料里抽出领导类型：
-
-- 愿景管理型
-- 默认先给初稿型
-- 会前补需求型
-- 放权但保留追责权型
-- 时间预期偏紧型
-
-### 3. 生存手册输出
-
-每次分析默认给你：
+`leader-skill` 是一个 local-first 的领导圣意解析器。  
+它把模糊任务、黑话、催进度和“我们再对齐一下”，翻译成更可执行的东西：
 
 - 实际意思
 - 优先级判断
 - 风险点
 - 建议回复
-- 晋升打法
+- 向上管理打法
 
-### 4. 本地导入优先
+<p align="center">
+  <img src="./assets/readme-hero.svg" alt="leader-skill hero" width="100%" />
+</p>
 
-首发支持这些输入：
+## 30 秒看懂
 
-- 粘贴文本
-- 截图图片
-- Markdown / TXT
-- PDF
-- 邮件导出 `.eml` / `.mbox`
-- 聊天导出 `.json` / `.txt`
+它不是一个只会抖机灵的梗仓库，而是一个真的能跑、真的能演示、也真的容易传播的 skill 项目：
 
-## 命令接口
+- 输入一句领导原话，直接输出结构化判断
+- 输入多条材料，沉淀成一个本地领导画像 bundle
+- 默认本地导入、本地分析，避免把职场素材随手外传
+- 生成 `leaders/<slug>/` 目录并自动做版本快照
 
-仓库里已经实现了对应 CLI，便于你本地先跑通。概念上的技能接口如下：
-
-- `/create-leader`
-- `/list-leaders`
-- `/{slug}`
-- `/{slug}-translate`
-- `/{slug}-priority`
-- `/{slug}-reply`
-- `/{slug}-risk`
-- `/{slug}-promotion`
-- `/leader-rollback {slug} {version}`
-- `/delete-leader {slug}`
-
-本地 CLI 对应为：
+最常见的一句，直接试：
 
 ```bash
-python -m tools.cli create-leader --slug visionary-director --name "愿景型总监" --text "这个你先看一下"
-python -m tools.cli list-leaders
 python -m tools.cli translate --text "这个你先看一下，晚点我们再对齐。"
-python -m tools.cli risk --text "这个不复杂吧，你今天先出个方案。"
-python -m tools.cli reply --text "这个你灵活处理一下。"
 ```
 
+你会得到类似这样的结果：
+
+```md
+# 领导黑话翻译
+
+## 实际意思
+这不是简单看看，而是希望你尽快形成反馈、判断或可评审产出。
+
+## 画像摘要
+推进节奏偏快，默认你会先垫出一版；习惯先推进再补边界；同步时会在意口径是否一致。
+
+## 风险点
+- 优先级没有被明确写出来，容易打乱你当前排期。
+- 优先级和验收标准可能还没有真正定清。
+
+## 建议回复
+我先整理一版可评审内容，今晚给你初稿，明天同步时一起确认范围、优先级和验收标准。
+```
+
+## 为什么它比“纯梗项目”更像产品
+
+`leader-skill` 的包装方式参考了 [colleague-skill](https://github.com/titanwings/colleague-skill) 和 [ex-skill](https://github.com/therealXiaomanChu/ex-skill) 这类高传播 skill 仓库，但分析对象换成了最常见也最有职场共鸣的一类人：领导。
+
+| 项目 | 主要对象 | 传播点 | 真实使用价值 |
+|---|---|---|---|
+| colleague-skill | 同事 / 协作关系 | 性格梗、关系梗 | 快速理解协作风格 |
+| ex-skill | 前任 / 情绪关系 | 记忆梗、话题性 | 做人物化还原 |
+| leader-skill | 领导 / 汇报场景 | 黑话翻译、职场共鸣 | 把任务安排翻译成行动策略 |
+
+`leader-skill` 多做的一步，是把“有梗”往“有用”再推进半步：
+
+- 命令真的能跑
+- 输出结构真的可读
+- 示例目录真的能打开
+- 版本回滚真的可用
+
 ## 安装
+
+### 作为 Claude Code Skill
+
+Claude Code 从当前仓库根目录的 `.claude/skills/` 查找 skill。你可以这样安装：
+
+```bash
+# 当前项目安装
+mkdir -p .claude/skills
+git clone https://github.com/Dewensong/leader-skill .claude/skills/create-leader
+
+# 或安装到全局
+git clone https://github.com/Dewensong/leader-skill ~/.claude/skills/create-leader
+```
+
+### 作为本地 CLI 试玩
 
 ```bash
 git clone https://github.com/Dewensong/leader-skill.git
 cd leader-skill
 python -m pip install -r requirements.txt
-```
-
-如果你只想体验核心功能，不安装依赖也能跑文本分析：
-
-```bash
-python -m tools.cli translate --text "这个你先看一下"
-```
-
-## 三组最适合传播的示例
-
-### 示例 1：这个你先看一下
-
-输入：
-
-```text
-这个你先看一下，晚点我们再对齐。
-```
-
-输出重点：
-
-- 实际意思：不是简单看看，而是希望你尽快形成反馈或产出
-- 风险点：优先级没写死，容易挤占你现在的排期
-- 建议回复：今晚先给一版可评审内容，明天同步时顺手把范围和验收标准锁住
-
-### 示例 2：这个不复杂吧
-
-输入：
-
-```text
-这个不复杂吧，你今天先出个方案，明天我们同步一下。
-```
-
-输出重点：
-
-- 实际意思：需求还没完全定义，但默认你会快速垫一版
-- 风险点：验收标准模糊、同步节点过近、返工概率高
-- 指数分：甩锅风险高、今晚加班概率高
-
-### 示例 3：我们再对齐一下
-
-输入：
-
-```text
-我们再对齐一下，我感觉方向上还可以更高级一点。
-```
-
-输出重点：
-
-- 实际意思：方向还没拍稳，但你需要带着更完整的方案回来
-- 风险点：评价标准抽象，很容易继续迭代
-- 建议动作：要对方给参考案例，或者明确“不想要什么”
-
-## 目录结构
-
-```text
-leader-skill/
-├─ SKILL.md
-├─ prompts/
-├─ tools/
-├─ leaders/
-├─ docs/
-├─ assets/
-├─ tests/
-├─ README.md
-├─ README_EN.md
-├─ INSTALL.md
-└─ requirements.txt
-```
-
-## 核心实现
-
-- `tools/analysis_engine.py`
-  - 黑话识别、风险打分、回复建议、晋升建议
-- `tools/source_router.py`
-  - 根据输入文件类型路由到不同解析器
-- `tools/skill_writer.py`
-  - 生成 `persona.md`、`intent-map.md`、`playbook.md`
-- `tools/version_manager.py`
-  - 快照与回滚
-
-## 快速开始
-
-### 1. 用一句话创建一个领导画像
-
-```bash
-python -m tools.cli create-leader \
-  --slug visionary-director \
-  --name "愿景型总监" \
-  --text "这个你先看一下，晚点我们再对齐。"
-```
-
-### 2. 看看本地已经生成了哪些领导实例
-
-```bash
-python -m tools.cli list-leaders
-```
-
-### 3. 单独做黑话翻译
-
-```bash
-python -m tools.cli translate --text "这个你灵活处理一下。"
-```
-
-### 4. 做风险分析
-
-```bash
-python -m tools.cli risk --text "这个不复杂吧，你今天先出个方案。"
-```
-
-## 测试
-
-```bash
 python -m unittest discover -s tests -p "test_*.py"
 ```
 
-## 发布建议
+## 先看成品，再决定要不要用
 
-这个项目最适合的发布姿势不是“求 star”，而是直接发一张 demo 图：
+如果你想先看“生成后的领导画像 bundle”长什么样，直接打开这些文件：
 
-- “领导说‘这个你先看一下’时，他到底在想什么？”
-- “把领导一句‘简单做个方案’翻译成人话”
-- “这个 skill 会自动识别画饼、甩锅、模糊优先级和返工风险”
+- [examples/demo-leader/README.md](./examples/demo-leader/README.md)
+- [examples/demo-leader/persona.md](./examples/demo-leader/persona.md)
+- [examples/demo-leader/intent-map.md](./examples/demo-leader/intent-map.md)
+- [examples/demo-leader/playbook.md](./examples/demo-leader/playbook.md)
 
-更多首发动作可以看：
+这个示例是脱敏的、通用化的，用来证明输出结构和呈现方式，而不是影射某个真实人物。
 
+## 支持来源
+
+首发版本坚持 local-first，优先兼容你已经能拿到的材料：
+
+| 来源 | 是否支持 | 当前方式 | 备注 |
+|---|---|---|---|
+| 粘贴文本 | Yes | 直接分析 | 最适合试用和演示 |
+| 截图 | Yes | OCR sidecar / 预留真实 OCR | 建议先打码 |
+| Markdown / TXT | Yes | 本地解析 | 适合会议纪要、群消息导出 |
+| PDF | Yes | 本地解析 | 适合通知、方案、附件 |
+| `.eml` / `.mbox` | Yes | 本地解析 | 适合邮件往来归档 |
+| 聊天导出 JSON | Yes | 路由到 chat parser | 适合协作平台导出 |
+
+<p align="center">
+  <img src="./assets/source-flow.svg" alt="leader-skill source flow" width="100%" />
+</p>
+
+## 最容易出圈的 3 组场景
+
+### 1. “这个你先看一下”
+
+| 项目 | 内容 |
+|---|---|
+| 实际意思 | 不是随便看看，而是希望你尽快形成反馈或可评审产出 |
+| 风险点 | 优先级没写死，容易打乱现有排期 |
+| 建议回复 | 我先整理一版可评审内容，今晚给你初稿，明天同步时一起确认范围 |
+
+### 2. “这个不复杂吧”
+
+| 项目 | 内容 |
+|---|---|
+| 实际意思 | 需求还没完全定义，但默认你会先垫第一版 |
+| 风险点 | 验收标准模糊，范围膨胀概率高 |
+| 建议回复 | 我先按当前理解出一版方案，同时把目标、范围和验收标准列清楚 |
+
+### 3. “我们再对齐一下”
+
+| 项目 | 内容 |
+|---|---|
+| 实际意思 | 方向、责任或口径还没完全锁定 |
+| 风险点 | 同步时如果没有可讨论版本，会被动挨改 |
+| 建议回复 | 我先把方案、风险和待确认项整理好，明天同步时一起收口 |
+
+## 命令接口
+
+默认输出是更适合人读的 Markdown；如果你想接脚本，也可以显式加 `--format json`。
+
+| 命令 | 作用 |
+|---|---|
+| `python -m tools.cli create-leader` | 创建一个新领导画像 |
+| `python -m tools.cli list-leaders` | 查看已有实例 |
+| `python -m tools.cli show-leader` | 打开完整领导画像 bundle |
+| `python -m tools.cli translate` | 做黑话翻译 |
+| `python -m tools.cli priority` | 看优先级信号 |
+| `python -m tools.cli persona` | 看领导画像摘要 |
+| `python -m tools.cli reply` | 生成更稳的回复和追问 |
+| `python -m tools.cli risk` | 识别风险点和指数分 |
+| `python -m tools.cli promotion` | 给出向上管理建议 |
+| `python -m tools.cli leader-rollback` | 回滚到旧版本 |
+| `python -m tools.cli delete-leader` | 删除实例 |
+
+对应的 slash command 设计如下：
+
+```text
+/create-leader
+/list-leaders
+/{slug}
+/{slug}-translate
+/{slug}-priority
+/{slug}-reply
+/{slug}-risk
+/{slug}-promotion
+/leader-rollback {slug} {version}
+/delete-leader {slug}
+```
+
+## 呈现方式
+
+这套项目的重点不是“代码写很多”，而是“看上去像个真的可用产品”。
+
+<p align="center">
+  <img src="./assets/demo-terminal.svg" alt="leader-skill markdown terminal demo" width="100%" />
+</p>
+
+## 项目结构
+
+```text
+leader-skill/
+├── SKILL.md
+├── README.md
+├── README_EN.md
+├── INSTALL.md
+├── assets/
+├── docs/
+├── examples/
+├── prompts/
+├── tests/
+└── tools/
+```
+
+推荐继续看：
+
+- [INSTALL.md](./INSTALL.md)
+- [docs/architecture.md](./docs/architecture.md)
 - [docs/release-checklist.md](./docs/release-checklist.md)
+- [examples/demo-leader/README.md](./examples/demo-leader/README.md)
 
-## 免责声明
+## 安全说明
 
-- 这个项目用于职场沟通理解与表达辅助，不用于攻击、骚扰、伪造指令或监控真实个人。
-- 默认推荐本地导入、本地分析；如果你要分享截图，请先打码。
-- 它不能替代真实沟通，只能帮你少做一点“工伤式理解”。
+- 默认本地导入、本地分析
+- 截图请先做脱敏
+- 不要把它用于骚扰、伪造、监控或针对真实个人
+- 它的目标是让沟通更清楚，不是让关系更糟
+
+## 参考项目
+
+- [titanwings/colleague-skill](https://github.com/titanwings/colleague-skill)
+- [therealXiaomanChu/ex-skill](https://github.com/therealXiaomanChu/ex-skill)

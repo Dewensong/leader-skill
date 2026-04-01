@@ -29,6 +29,57 @@ def _build_promotion_hint(tags: Iterable[str]) -> str:
     return "把每次临时任务都沉淀成可追踪的结果清单，持续积累可见度和可归因的贡献。"
 
 
+def _build_follow_up_questions(cues: set[str]) -> list[str]:
+    questions: list[str] = []
+    if "soft_review" in cues or "underspecified_scope" in cues:
+        questions.append("你更希望我先给方案、结论，还是一版可直接评审的初稿？")
+    if "alignment" in cues:
+        questions.append("这次同步最需要对齐的是方向、范围，还是口径和优先级？")
+    if "flexible_blame" in cues:
+        questions.append("这件事里哪些边界需要你拍板，哪些我可以直接推进？")
+    if "quick_peek" in cues:
+        questions.append("你希望我先同步关键风险，还是直接给一版可讨论的内容？")
+    if "underspecified_scope" in cues:
+        questions.append("验收标准和截止时间，我要不要先整理成书面版给你确认？")
+
+    defaults = [
+        "这件事的截止时间是今天、明天，还是本周内？",
+        "你更希望先看到方案、结论，还是任务拆解？",
+        "验收标准和优先级要不要我先写一版供你确认？",
+    ]
+    for question in defaults:
+        questions.append(question)
+
+    deduped: list[str] = []
+    seen: set[str] = set()
+    for question in questions:
+        if question not in seen:
+            deduped.append(question)
+            seen.add(question)
+        if len(deduped) == 3:
+            break
+    return deduped
+
+
+def _build_persona_summary(tags: Iterable[str], scores: dict[str, int]) -> str:
+    tag_set = set(tags)
+    summary_bits: list[str] = []
+
+    if "时间预期偏紧" in tag_set or scores.get("overtime_probability", 0) >= 60:
+        summary_bits.append("推进节奏偏快，默认你会先垫出一版")
+    if "会前补需求" in tag_set or "默认先给初稿" in tag_set:
+        summary_bits.append("习惯先推进再补边界")
+    if "口径敏感" in tag_set:
+        summary_bits.append("同步时会在意口径是否一致")
+    if "责任边界模糊" in tag_set or scores.get("blame_risk", 0) >= 65:
+        summary_bits.append("需要你主动用书面方式锁定责任和验收标准")
+
+    if not summary_bits:
+        summary_bits.append("表达留白较多，需要你主动补齐目标、边界和节奏")
+
+    return "；".join(summary_bits) + "。"
+
+
 def analyze_message(message: str) -> dict[str, object]:
     text = re.sub(r"\s+", " ", message).strip()
     actual_bits: list[str] = []
@@ -99,6 +150,8 @@ def analyze_message(message: str) -> dict[str, object]:
         "risk_points": risk_points,
         "reply_suggestion": _build_reply(text, cues),
         "promotion_hint": _build_promotion_hint(persona_tags),
+        "follow_up_questions": _build_follow_up_questions(cues),
+        "persona_summary": _build_persona_summary(persona_tags, {key: _cap_score(value) for key, value in scores.items()}),
         "persona_tags": sorted(persona_tags),
         "scores": {key: _cap_score(value) for key, value in scores.items()},
     }
