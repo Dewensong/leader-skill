@@ -1,40 +1,36 @@
-# leader-skill
+# leader.skill
 
-`leader-skill` is a local-first decoder for vague boss messages.
+> "This is simple. Please handle it today. The boss wants to see it tomorrow. We can align on details later."
 
-It turns messy workplace language into something actionable:
+`leader-skill` is a local-first decoder for boss language.
 
-- actual meaning
-- priority signal
-- hidden risks
-- safer replies
-- upward-management moves
-
-## What makes it interesting
-
-This repository borrows the high-virality skill packaging style seen in:
+It is heavily inspired by the packaging style of:
 
 - [titanwings/colleague-skill](https://github.com/titanwings/colleague-skill)
 - [therealXiaomanChu/ex-skill](https://github.com/therealXiaomanChu/ex-skill)
 
-But the subject is different:
+But the target is different: not coworkers, not ex-partners, but leaders and managers.
 
-- not coworkers
-- not ex-partners
-- instead: leadership language at work
+## What it does
 
-The goal is simple: make vague assignments less mysterious and less dangerous.
+It turns vague workplace phrases into:
 
-## Quick start
+- actual meaning
+- priority judgment
+- hidden risk
+- safer reply suggestions
+- upward-management moves
 
-### Install as a Claude Code skill
+## Install
+
+### Claude Code
 
 ```bash
 mkdir -p .claude/skills
 git clone https://github.com/Dewensong/leader-skill .claude/skills/create-leader
 ```
 
-### Or run it locally
+### Local CLI
 
 ```bash
 git clone https://github.com/Dewensong/leader-skill.git
@@ -43,51 +39,63 @@ python -m pip install -r requirements.txt
 python -m unittest discover -s tests -p "test_*.py"
 ```
 
-Try the most common phrase:
+## Quick use
 
 ```bash
 python -m tools.cli translate --text "Please take a look first, and we can align later."
 ```
 
-The CLI now defaults to human-readable Markdown. Use `--format json` if you want machine output.
+The CLI defaults to human-readable Markdown. Use `--format json` when you want machine output.
 
 ## Supported sources
 
-- pasted text
-- screenshots
-- Markdown / TXT
-- PDF
-- `.eml` / `.mbox`
-- chat export JSON
+| Source | Status | Notes |
+| --- | --- | --- |
+| pasted text | supported | best for quick testing |
+| screenshots | supported | OCR sidecar workflow |
+| Markdown / TXT | supported | meeting notes, exports |
+| PDF | supported | attachments, docs |
+| `.eml` / `.mbox` | supported | email archives |
+| chat export JSON | supported | local exports |
+| online Feishu / DingTalk collection | planned | not required for v1 |
 
-Everything is designed to stay local-first by default.
+## Example scenarios
 
-## Sample bundle
+### "Please take a look first"
 
-If you want to inspect the output without running anything first:
+```text
+User          ❯ Help me decode: please take a look first, and we can align later.
 
-- [examples/demo-leader/README.md](./examples/demo-leader/README.md)
-- [examples/demo-leader/persona.md](./examples/demo-leader/persona.md)
-- [examples/demo-leader/intent-map.md](./examples/demo-leader/intent-map.md)
-- [examples/demo-leader/playbook.md](./examples/demo-leader/playbook.md)
+leader.skill  ❯ This does not mean “look when you have time”
+               It usually means “prepare something reviewable first”
+               Better assume a draft is needed before the sync
+```
 
-## Core commands
+### "This should be simple"
 
-- `python -m tools.cli create-leader`
-- `python -m tools.cli list-leaders`
-- `python -m tools.cli show-leader`
-- `python -m tools.cli translate`
-- `python -m tools.cli priority`
-- `python -m tools.cli persona`
-- `python -m tools.cli reply`
-- `python -m tools.cli risk`
-- `python -m tools.cli promotion`
-- `python -m tools.cli leader-rollback`
-- `python -m tools.cli delete-leader`
+```text
+User          ❯ My manager said: this should be simple, give me a plan today.
+
+leader.skill  ❯ “Simple” often does not mean easy
+               It often means the scope is still fuzzy but you are expected to move first
+               Clarify scope before you over-commit
+```
+
+## Bundle structure
+
+Each generated leader profile includes:
+
+- `README.md`
+- `persona.md`
+- `intent-map.md`
+- `playbook.md`
+- `sources.json`
+- `corrections.md`
+- `versions/`
 
 ## Safety
 
 - local-first by default
-- redact screenshots before importing them
+- redact screenshots before import
 - do not use it to harass, forge, monitor, or target real people
-- the point is clearer communication, not manipulative behavior
+- the goal is clearer communication, not manipulative behavior
