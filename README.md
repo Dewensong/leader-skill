@@ -6,7 +6,7 @@
 它会把模糊任务、黑话、套话和“先对齐一下”的空气，翻译成更可执行的人话，再顺手给你一版更稳的回复和向上管理建议。
 
 <p>
-  <img src="./assets/social-preview.svg" alt="leader skill social preview" width="100%" />
+  <img src="./assets/social-preview.png" alt="leader skill social preview" width="100%" />
 </p>
 
 ## 为什么它容易让人秒懂
