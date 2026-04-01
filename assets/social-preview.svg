@@ -1,0 +1,15 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="640" fill="#10141E"/>
+  <rect x="46" y="52" width="1188" height="536" rx="28" fill="#161D2D" stroke="#2A3654" stroke-width="2"/>
+  <circle cx="96" cy="102" r="8" fill="#FF6B6B"/>
+  <circle cx="122" cy="102" r="8" fill="#FFD166"/>
+  <circle cx="148" cy="102" r="8" fill="#4ECDC4"/>
+  <text x="86" y="168" fill="#F8FAFC" font-size="56" font-family="Segoe UI, Microsoft YaHei, sans-serif" font-weight="700">领导.skill</text>
+  <text x="86" y="218" fill="#9FB0D1" font-size="28" font-family="Segoe UI, Microsoft YaHei, sans-serif">领导圣意解析器 · Decode vague boss messages into real requirements</text>
+  <rect x="86" y="270" width="1108" height="246" rx="22" fill="#0F1726" stroke="#2C4066" stroke-width="2"/>
+  <text x="120" y="328" fill="#67E8F9" font-size="24" font-family="Consolas, monospace">$ python -m tools.cli translate --text "这个你先看一下，晚点我们再对齐。"</text>
+  <text x="120" y="386" fill="#E2E8F0" font-size="24" font-family="Consolas, monospace">actual_meaning: 这不是简单看看，而是希望你尽快形成反馈或产出</text>
+  <text x="120" y="426" fill="#E2E8F0" font-size="24" font-family="Consolas, monospace">risk_points: 优先级没写死，验收标准也还没真正定清</text>
+  <text x="120" y="466" fill="#E2E8F0" font-size="24" font-family="Consolas, monospace">reply: 今晚先给一版可评审内容，明天同步时锁定范围和优先级</text>
+  <text x="120" y="542" fill="#F59E0B" font-size="22" font-family="Segoe UI, Microsoft YaHei, sans-serif">第一眼有梗，第二眼能用，第三眼会想发给同事。</text>
+</svg>

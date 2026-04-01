@@ -1,0 +1,5 @@
+# Core workflows run on Python 3.11+ with the standard library.
+# Install these optional helpers if you want richer local parsing.
+pypdf>=5.4.0
+Pillow>=11.0.0
+pytesseract>=0.3.13
